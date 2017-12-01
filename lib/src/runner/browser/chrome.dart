@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import '../../backend/test_platform.dart';
@@ -52,6 +53,12 @@ class Chrome extends Browser {
         if (port != null) args.add("--remote-debugging-port=$port");
 
         var process = await Process.start(settings.executable, args);
+        process.stdout
+            .transform(UTF8.decoder)
+            .listen((data) => 'CHROME STDOUT: $data');
+        process.stderr
+            .transform(UTF8.decoder)
+            .listen((data) => 'CHROME STDERR: $data');
 
         if (port != null) {
           remoteDebuggerCompleter.complete(
