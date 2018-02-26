@@ -73,8 +73,9 @@ abstract class Browser {
       var output = new Uint8Buffer();
       drainOutput(Stream<List<int>> stream) {
         try {
-          _ioSubscriptions
-              .add(stream.listen(output.addAll, cancelOnError: true));
+          ;
+          _ioSubscriptions.add(stream.listen((data) => print(UTF8.decode(data)),
+              cancelOnError: true));
         } on StateError catch (_) {}
       }
 
