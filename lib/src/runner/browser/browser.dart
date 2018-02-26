@@ -74,7 +74,8 @@ abstract class Browser {
       drainOutput(Stream<List<int>> stream) {
         try {
           ;
-          _ioSubscriptions.add(stream.listen((data) => print(UTF8.decode(data))));
+          _ioSubscriptions
+              .add(stream.listen((data) => print(UTF8.decode(data))));
         } on StateError catch (_) {}
       }
 
@@ -117,7 +118,10 @@ abstract class Browser {
       await new Future.delayed(new Duration(seconds: 5));
 
       // Make sure the process dies even if the error wasn't fatal.
-      _process.then((process) => process.kill());
+      _process.then((process) {
+        process.stdout.transform(UTF8.decoder).listen(print);
+        process.stderr.transform(UTF8.decoder).listen(print);
+      });
 
       print("Browser error: $error");
 
