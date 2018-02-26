@@ -38,6 +38,7 @@ class Chrome extends Browser {
           "--disable-extensions",
           "--disable-popup-blocking",
           "--no-sandbox",
+          "--disable-setuid-sandbox",
           "--bwsi",
           "--no-first-run",
           "--no-default-browser-check",
