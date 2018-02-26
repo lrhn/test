@@ -70,7 +70,7 @@ class Chrome extends Browser {
 
         print("Running browser Chrome.");
         process.stderr.transform(UTF8.decoder).listen(print);
-        process.stderr.transform(UTF8.decoder).listen(print);
+        process.stdout.transform(UTF8.decoder).listen(print);
 
         if (port != null) {
           remoteDebuggerCompleter.complete(
