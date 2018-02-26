@@ -44,6 +44,8 @@ class Chrome extends Browser {
           "--no-default-browser-check",
           "--disable-default-apps",
           "--disable-translate",
+          "--remote-debugging-address=0.0.0.0",
+          "--user-data-dir=/tmp",
         ];
 
         if (!debug && settings.headless) {
