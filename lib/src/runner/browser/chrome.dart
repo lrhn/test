@@ -42,6 +42,10 @@ class Chrome extends Browser {
           "--no-default-browser-check",
           "--disable-default-apps",
           "--disable-translate",
+          '--ignore-certificate-errors',
+          '--test-type',
+          '--disable-renderer-backgrounding',
+          '--disable-background-timer-throttling',
         ];
 
         if (!debug && settings.headless) {
