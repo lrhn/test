@@ -74,8 +74,7 @@ abstract class Browser {
       drainOutput(Stream<List<int>> stream) {
         try {
           ;
-          _ioSubscriptions.add(stream.listen((data) => print(UTF8.decode(data)),
-              cancelOnError: true));
+          _ioSubscriptions.add(stream.listen((data) => print(UTF8.decode(data))));
         } on StateError catch (_) {}
       }
 
@@ -110,9 +109,12 @@ abstract class Browser {
       }
 
       _onExitCompleter.complete();
-    }, onError: (error, stackTrace) {
+    }, onError: (error, stackTrace) async {
       // Ignore any errors after the browser has been closed.
       if (_closed) return;
+
+      // Wait to capture some process output
+      await new Future.delayed(new Duration(seconds: 5));
 
       // Make sure the process dies even if the error wasn't fatal.
       _process.then((process) => process.kill());
