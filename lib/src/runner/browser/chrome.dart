@@ -42,10 +42,12 @@ class Chrome extends Browser {
           "--bwsi",
           "--no-first-run",
           "--no-default-browser-check",
+          "--no-sandbox",
           "--disable-default-apps",
           "--disable-translate",
           "--remote-debugging-address=0.0.0.0",
-          "--user-data-dir=/tmp",
+             "--headless",
+            "--disable-gpu",
         ];
 
         if (!debug && settings.headless) {
