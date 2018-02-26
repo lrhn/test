@@ -4,6 +4,7 @@
 
 import 'dart:async';
 import 'dart:io';
+import 'dart:convert';
 
 import '../../backend/test_platform.dart';
 import '../../util/io.dart';
@@ -46,6 +47,7 @@ class Chrome extends Browser {
         ];
 
         if (!debug && settings.headless) {
+          print("Running with headless");
           args.addAll([
             "--headless",
             "--disable-gpu",
@@ -65,6 +67,10 @@ class Chrome extends Browser {
         if (port != null) args.add("--remote-debugging-port=$port");
 
         var process = await Process.start(settings.executable, args);
+
+        print("Running browser Chrome.");
+        process.stderr.transform(UTF8.decoder).listen(print);
+        process.stderr.transform(UTF8.decoder).listen(print);
 
         if (port != null) {
           remoteDebuggerCompleter.complete(
