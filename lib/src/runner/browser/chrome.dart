@@ -36,18 +36,10 @@ class Chrome extends Browser {
         var args = [
           "--user-data-dir=$dir",
           url.toString(),
-          "--disable-extensions",
-          "--disable-popup-blocking",
-          "--disable-setuid-sandbox",
-          "--bwsi",
-          "--no-first-run",
-          "--no-default-browser-check",
-          "--no-sandbox",
-          "--disable-default-apps",
-          "--disable-translate",
           "--remote-debugging-address=0.0.0.0",
-             "--headless",
-            "--disable-gpu",
+          "--headless",
+          "--no-sandbox",
+          "--disable-gpu",
         ];
 
         if (!debug && settings.headless) {
