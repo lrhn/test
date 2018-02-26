@@ -117,6 +117,8 @@ abstract class Browser {
       // Make sure the process dies even if the error wasn't fatal.
       _process.then((process) => process.kill());
 
+      print("Browser error: $error");
+
       if (stackTrace == null) stackTrace = new Trace.current();
       if (_onExitCompleter.isCompleted) return;
       _onExitCompleter.completeError(
