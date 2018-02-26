@@ -37,7 +37,6 @@ class Chrome extends Browser {
           url.toString(),
           "--disable-extensions",
           "--disable-popup-blocking",
-          "--no-sandbox",
           "--disable-setuid-sandbox",
           "--bwsi",
           "--no-first-run",
